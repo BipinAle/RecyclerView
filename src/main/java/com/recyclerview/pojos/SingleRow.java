@@ -5,8 +5,18 @@ package com.recyclerview.pojos;
  */
 
 public class SingleRow {
-    String header, subHeader;
-    int images;
+    private String header, subHeader;
+    private int images;
+
+    public SingleRow( ) {
+
+    }
+
+    public SingleRow(String header, String subHeader, int images) {
+        this.header = header;
+        this.subHeader = subHeader;
+        this.images = images;
+    }
 
     public String getHeader() {
         return header;

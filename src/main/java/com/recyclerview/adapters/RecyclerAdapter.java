@@ -9,16 +9,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.recyclerview.R;
+import com.recyclerview.pojos.SingleRow;
 
-/**
- * Created by dellxps on 2/21/2017.
- */
+import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
-    Context context;
+    private Context context;
+    private ArrayList<SingleRow> data = new ArrayList<>();
 
-    public RecyclerAdapter(Context context) {
+    public RecyclerAdapter(Context context, ArrayList<SingleRow> data) {
         this.context = context;
+        this.data = data;
 
     }
 
@@ -32,11 +33,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @Override
     public void onBindViewHolder(RecyclerAdapter.MyViewHolder holder, int position) {
 
+        holder.header.setText(data.get(position).getHeader());
+        holder.subHeaders.setText(data.get(position).getSubHeader());
+        holder.imageView.setImageResource(data.get(position).getImages());
     }
 
     @Override
     public int getItemCount() {
-        return 10;
+        return data.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -46,8 +50,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         public MyViewHolder(View itemView) {
             super(itemView);
 
-            header = (TextView) itemView.findViewById(R.id.header);
-            subHeaders = (TextView) itemView.findViewById(R.id.subheader);
+            header = (TextView) itemView.findViewById(R.id.title);
+            subHeaders = (TextView) itemView.findViewById(R.id.description);
             imageView = (ImageView) itemView.findViewById(R.id.image);
 
         }
